@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelmanagement;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import hotelmanagement.DB.DBHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,19 +15,37 @@ import javafx.scene.control.Label;
  * @author Laptop
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     @FXML
-    private Label label;
-    
+    private JFXTextField custName;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private JFXTextField custID;
+    @FXML
+    private JFXTextField custHometown;
+    @FXML
+    private JFXTextField custYOB;
+    @FXML
+    private JFXTextField cusMobile;
+    @FXML
+    private JFXTextField cusEmail;
+    @FXML
+    private JFXButton saveBnt;
+    @FXML
+    private JFXButton cancelBnt;
+    
+    DBHandler dbHandler;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        dbHandler = new DBHandler();
     }    
+
+    @FXML
+    private void addCustomer(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+    }
     
 }
