@@ -35,7 +35,7 @@ public class DBHandler {
     
     void createCustomerTable(){
         String sql = "CREATE TABLE CUSTOMER(\n"+
-                     "name nvarchar(256),\n"+
+                     "name nvarchar(256) NOT NULL,\n"+
                      "id varchar(12),\n"+
                      "hometown nvarchar(256),\n"+
                      "yearOfBirth int,\n"+
@@ -75,6 +75,18 @@ public class DBHandler {
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public boolean executeQuery(String sql){
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         
     }
