@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <right>
+            <VBox prefHeight="612.0" prefWidth="224.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="150.0" prefWidth="224.0" text="Add Customer">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/customer_add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="223.0" text="Booking History">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/booking_history.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="223.0" text="Customer List">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/customer_list.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="224.0" text="Room List">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/room_list.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="Logout">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </right>
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Booking">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="209.0" prefWidth="646.0">
+                                 <children>
+                                    <TextField alignment="CENTER" promptText="Enter Room ID" />
+                                    <VBox alignment="CENTER" prefHeight="209.0" prefWidth="303.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room ID" textAlignment="CENTER" wrappingWidth="306.6708984375" />
+                                          <Text layoutX="10.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" textAlignment="CENTER" wrappingWidth="306.6708984375">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="209.0" prefWidth="646.0">
+                                 <children>
+                                    <TextField alignment="CENTER" promptText="Enter Member ID" />
+                                    <VBox alignment="CENTER" prefHeight="209.0" prefWidth="303.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Member ID" textAlignment="CENTER" wrappingWidth="306.6708984375" />
+                                          <Text layoutX="10.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" textAlignment="CENTER" wrappingWidth="306.6708984375">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="154.0" prefWidth="646.0">
+                                 <children>
+                                    <JFXButton text="Book" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+                <Tab text="Return">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                  <Tab text="Renew">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

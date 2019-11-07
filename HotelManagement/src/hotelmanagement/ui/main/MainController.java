@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotelmanagement.ui.viewcustomers;
+package hotelmanagement.ui.main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Laptop
  */
-public class ViewCustomersController implements Initializable {
+public class MainController implements Initializable {
 
     /**
      * Initializes the controller class.

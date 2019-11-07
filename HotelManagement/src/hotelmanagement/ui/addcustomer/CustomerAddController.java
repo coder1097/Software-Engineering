@@ -64,7 +64,7 @@ public class CustomerAddController implements Initializable {
         
         String sql = "INSERT INTO CUSTOMER VALUES(N'"+name+"','"+id+"',N'"+hometown+"',"+yearOfBirth+",'"+mobile+"','"+email+"')";
         
-        if(dbHandler.executeQuery(sql)){
+        if(dbHandler.execute(sql)){
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("SUCCESS");
