@@ -42,7 +42,7 @@ public class CustomerAddController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dbHandler = new DBHandler();
+        dbHandler = DBHandler.getInstance();
     }    
 
     @FXML

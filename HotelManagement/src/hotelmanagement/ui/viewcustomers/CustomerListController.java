@@ -59,7 +59,7 @@ public class CustomerListController implements Initializable {
     }
 
     private void loadData() {
-        DBHandler dbHandler = new DBHandler();
+        DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM CUSTOMER";
         ResultSet rs = dbHandler.executeQuery(sql);
         
