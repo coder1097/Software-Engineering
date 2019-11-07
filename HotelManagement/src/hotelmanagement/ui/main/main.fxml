@@ -17,7 +17,7 @@
          <right>
             <VBox prefHeight="612.0" prefWidth="224.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="150.0" prefWidth="224.0" text="Check-In">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="150.0" prefWidth="224.0" text="Check-In">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -26,7 +26,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="223.0" text="Check-out">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCheckOut" prefHeight="150.0" prefWidth="223.0" text="Check-out">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="223.0" text="Add Customer">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="150.0" prefWidth="223.0" text="Add Customer">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="224.0" text="Customer List">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#showCustomerList" prefHeight="150.0" prefWidth="224.0" text="Customer List">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,7 +53,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="Booking History">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" onAction="#showBookingHistory" prefHeight="150.0" prefWidth="225.0" text="Booking History">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>

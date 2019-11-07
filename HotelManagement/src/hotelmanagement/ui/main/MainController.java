@@ -6,6 +6,7 @@
 package hotelmanagement.ui.main;
 
 import hotelmanagement.DB.DBHandler;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +15,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,7 +54,7 @@ public class MainController implements Initializable {
         roomList = FXCollections.observableArrayList();
         initCols();
         loadData();
-    }    
+    }
 
     private void initCols() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -76,6 +83,43 @@ public class MainController implements Initializable {
         }
         
         tableView.getItems().setAll(roomList);
+    }
+
+    @FXML
+    private void handleCheckIn(ActionEvent event) {
+        load("/hotelmanagement/ui/docheckin/check_in.fxml","Check-In");
+    }
+
+    @FXML
+    private void handleCheckOut(ActionEvent event) {
+        load("/hotelmanagement/ui/docheckout/check_out.fxml","Check-Out");
+    }
+
+    @FXML
+    private void addCustomer(ActionEvent event) {
+        load("/hotelmanagement/ui/addcustomer/add_customer.fxml","Add Customer");
+    }
+
+    @FXML
+    private void showCustomerList(ActionEvent event) {
+        load("/hotelmanagement/ui/viewcustomers/view_customers.fxml","Customer List");
+    }
+
+    @FXML
+    private void showBookingHistory(ActionEvent event) {
+        load("/hotelmanagement/ui/viewbookinghistory/booking_history.fxml","Booking History");
+    }
+    
+    private void load(String loc, String title){
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(loc));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle(title);
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
