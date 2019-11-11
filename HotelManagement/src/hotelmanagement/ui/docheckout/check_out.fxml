@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +8,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagement.ui.docheckout.CheckOutController">
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="656.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="hotelmanagement.ui.docheckout.CheckOutController">
     <stylesheets>
-        <URL value="@check_out.css"/>
+        <URL value="@check_out.css" />
     </stylesheets>
+   <children>
+      <VBox prefHeight="630.0" prefWidth="812.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
+               <children>
+                  <JFXTextField fx:id="roomID" promptText="Enter Room ID" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
+               <children>
+                  <JFXButton onAction="#returnRoom" text="Submit" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

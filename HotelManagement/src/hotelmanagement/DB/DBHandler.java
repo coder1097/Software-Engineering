@@ -23,6 +23,7 @@ public final class DBHandler {
         createConnection();
         createCustomerTable();
         createRoomTable();
+        createBillTable();
     }
     
     public static DBHandler getInstance(){
@@ -43,7 +44,7 @@ public final class DBHandler {
     private void createCustomerTable(){
         String sql = "CREATE TABLE CUSTOMER(\n"+
                      "name nvarchar(256) NOT NULL,\n"+
-                     "id varchar(12),\n"+
+                     "id varchar(20),\n"+
                      "hometown nvarchar(256),\n"+
                      "yearOfBirth int,\n"+
                      "mobile varchar(20),\n"+
@@ -87,32 +88,6 @@ public final class DBHandler {
         
     }
     
-    public boolean execute(String sql){
-        try {
-            pst = conn.prepareStatement(sql);
-            pst.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-        
-    }
-    
-    public ResultSet executeQuery(String sql){
-        ResultSet rs;
-        
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-        return rs;
-    }
-
     private void insertRooms() {
         String sql = "INSERT INTO ROOM VALUES(?,?,?,?)";
         Room r;
@@ -142,4 +117,60 @@ public final class DBHandler {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    
+    private void createBillTable(){
+        String sql = "CREATE TABLE BILL(\n"+
+                     "id int identity(1,1),\n"+
+                     "customerID varchar(20),\n"+
+                     "roomID int,\n"+
+                     "roomType varchar(10) DEFAULT('NORMAL') CHECK(roomType IN('NORMAL','VIP')),\n"+
+                     "checkIn varchar(25),\n"+
+                     "checkOut varchar(25) default(null),\n"+
+                     "fee int default(0),\n"+
+                     "CONSTRAINT FK_BILL_CUSTOMERID_CUSTOMER FOREIGN KEY(customerID) REFERENCES CUSTOMER(id),\n"+
+                     "CONSTRAINT FK_BILL_ROOMID_ROOM FOREIGN KEY(roomID) REFERENCES ROOM(id),\n"+
+                     "PRIMARY KEY(id))";
+        try {
+            dbm = conn.getMetaData();
+            rs = dbm.getTables(null, null, "BILL", null);
+            
+            if(rs.next()){
+                System.out.println("Table is already existed");
+            }else{
+                pst = conn.prepareStatement(sql);
+                pst.execute();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public boolean execute(String sql){
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    }
+    
+    public ResultSet executeQuery(String sql){
+        ResultSet rs;
+        
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return rs;
+    }
+
+    
 }

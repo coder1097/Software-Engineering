@@ -31,10 +31,6 @@ public class CustomerAddController implements Initializable {
     @FXML
     private JFXTextField custEmail;
     @FXML
-    private JFXButton saveBnt;
-    @FXML
-    private JFXButton cancelBnt;
-    @FXML
     private AnchorPane rootPane;
     
     private DBHandler dbHandler;
@@ -44,7 +40,7 @@ public class CustomerAddController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         dbHandler = DBHandler.getInstance();
     }    
-
+    
     @FXML
     private void addCustomer(ActionEvent event) {
         String name = custName.getText();
@@ -77,7 +73,6 @@ public class CustomerAddController implements Initializable {
         }
         
     }
-
     @FXML
     private void cancel(ActionEvent event) {
         Stage stage = (Stage)rootPane.getScene().getWindow();

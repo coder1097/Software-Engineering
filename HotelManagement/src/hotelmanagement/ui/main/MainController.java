@@ -53,7 +53,6 @@ public class MainController implements Initializable {
         // TODO
         roomList = FXCollections.observableArrayList();
         initCols();
-        loadData();
     }
 
     private void initCols() {
@@ -63,7 +62,8 @@ public class MainController implements Initializable {
         statusCol.setCellValueFactory(new PropertyValueFactory<>("sStatus"));
     }
 
-    private void loadData() {
+    @FXML
+    private void loadRoomData(ActionEvent event) {
         DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM ROOM";
         ResultSet rs = dbHandler.executeQuery(sql);
@@ -121,5 +121,7 @@ public class MainController implements Initializable {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
     
 }
