@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,11 +43,14 @@ public class BookingHistoryController implements Initializable {
     @FXML
     private TableColumn<Bill, Integer> feeCol; 
     
-    private ObservableList<Bill> roomList;
+    private ObservableList<Bill> billList;
+    private DBHandler dbHandler;
+    private Alert alert;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        roomList = FXCollections.observableArrayList();
+        dbHandler = DBHandler.getInstance();
+        billList = FXCollections.observableArrayList();
         initCols();
         loadBills();
     }
@@ -62,7 +66,6 @@ public class BookingHistoryController implements Initializable {
     }
 
     private void loadBills() {
-        DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM BILL";
         ResultSet rs = dbHandler.executeQuery(sql);
         
@@ -76,14 +79,34 @@ public class BookingHistoryController implements Initializable {
                 String checkOut = rs.getString("checkOut");
                 int fee = rs.getInt("fee");
 
-                roomList.add(new Bill(id,customerID,roomID,roomType,checkIn,checkOut,fee));
+                billList.add(new Bill(id,customerID,roomID,roomType,checkIn,checkOut,fee));
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        tableView.getItems().setAll(roomList);
+        tableView.setItems(billList);
+    }
+
+    @FXML
+    private void deleteBill(ActionEvent event) {
+        Bill billToDelete = tableView.getSelectionModel().getSelectedItem();
+        if(billToDelete != null){
+            Boolean status = dbHandler.executeBillDeletion(billToDelete);
+            if(status){
+                billList.remove(billToDelete);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("DONE");
+                alert.showAndWait();
+            }else{
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to delete");
+                alert.showAndWait();
+            }
+        }
     }
     
 }

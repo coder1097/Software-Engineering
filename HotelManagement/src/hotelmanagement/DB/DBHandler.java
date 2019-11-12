@@ -1,6 +1,8 @@
 package hotelmanagement.DB;
 
 import hotelmanagement.ui.main.Room;
+import hotelmanagement.ui.viewbookinghistory.Bill;
+import hotelmanagement.ui.viewcustomers.Customer;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -174,6 +176,48 @@ public final class DBHandler {
             return null;
         }
         return rs;
+    }
+    
+    public boolean executeRoomDeletion(Room r){
+        String roomDeletionSQL = "DELETE FROM ROOM WHERE id=?";
+        try {
+            pst = conn.prepareStatement(roomDeletionSQL);
+            pst.setInt(1,r.getId());
+            int res = pst.executeUpdate();
+            
+            if(res == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean executeCustomerDeletion(Customer c){
+        String customerDeletionSQL = "DELETE FROM CUSTOMER WHERE id=?";
+        try {
+            pst = conn.prepareStatement(customerDeletionSQL);
+            pst.setString(1,c.getId());
+            int res = pst.executeUpdate();
+            
+            if(res == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean executeBillDeletion(Bill b){
+        String billDeletionSQL = "DELETE FROM BILL WHERE id=?";
+        try {
+            pst = conn.prepareStatement(billDeletionSQL);
+            pst.setInt(1,b.getId());
+            int res = pst.executeUpdate();
+            
+            if(res == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     

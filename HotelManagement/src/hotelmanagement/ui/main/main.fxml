@@ -80,6 +80,13 @@
                               <TableColumn fx:id="bedroomCol" prefWidth="75.0" text="Bedrooms" />
                               <TableColumn fx:id="statusCol" prefWidth="75.0" text="Room Status" />
                            </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#deleteRoom" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="115.0" prefWidth="802.0">
                            <children>

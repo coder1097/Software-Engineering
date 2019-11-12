@@ -9,8 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,12 +40,14 @@ public class CustomerListController implements Initializable {
     private TableColumn<Customer, String> emailCol;
     
     private ObservableList<Customer> customerList;
-
+    private DBHandler dbHandler;
+    private Alert alert;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dbHandler = DBHandler.getInstance();
         customerList = FXCollections.observableArrayList();
         initCols();
         loadData();
@@ -59,7 +63,6 @@ public class CustomerListController implements Initializable {
     }
 
     private void loadData() {
-        DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM CUSTOMER";
         ResultSet rs = dbHandler.executeQuery(sql);
         
@@ -78,11 +81,28 @@ public class CustomerListController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tableView.getItems().setAll(customerList);
-        
-        
-        
-        
+        tableView.setItems(customerList);
+
+    }
+
+    @FXML
+    private void deleteCustomer(ActionEvent event) {
+        Customer customerToDelete = tableView.getSelectionModel().getSelectedItem();
+        if(customerToDelete != null){
+            Boolean status = dbHandler.executeCustomerDeletion(customerToDelete);
+            if(status){
+                customerList.remove(customerToDelete);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("DONE");
+                alert.showAndWait();
+            }else{
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to delete");
+                alert.showAndWait();
+            }
+        }
     }
     
 }

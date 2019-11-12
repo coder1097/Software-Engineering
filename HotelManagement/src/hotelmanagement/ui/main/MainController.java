@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,10 +47,13 @@ public class MainController implements Initializable {
     private TableColumn<Room, String> statusCol;
     
     private ObservableList<Room> roomList;
+    private DBHandler dbHandler;
+    private Alert alert;
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dbHandler = DBHandler.getInstance();
         initCols();
     }
 
@@ -66,7 +70,6 @@ public class MainController implements Initializable {
         roomList = FXCollections.observableArrayList();
         tableView.getItems().clear();
         
-        DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM ROOM";
         ResultSet rs = dbHandler.executeQuery(sql);
         
@@ -84,7 +87,7 @@ public class MainController implements Initializable {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        tableView.getItems().setAll(roomList);
+        tableView.setItems(roomList);
     }
 
     @FXML
@@ -121,6 +124,26 @@ public class MainController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void deleteRoom(ActionEvent event) {
+        Room roomToDelete = tableView.getSelectionModel().getSelectedItem();
+        if(roomToDelete != null){
+            Boolean status = dbHandler.executeRoomDeletion(roomToDelete);
+            if(status){
+                roomList.remove(roomToDelete);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("DONE");
+                alert.showAndWait();
+            }else{
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to delete");
+                alert.showAndWait();
+            }
         }
     }
 
