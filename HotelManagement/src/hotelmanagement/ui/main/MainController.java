@@ -50,8 +50,6 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        roomList = FXCollections.observableArrayList();
         initCols();
     }
 
@@ -64,6 +62,10 @@ public class MainController implements Initializable {
 
     @FXML
     private void loadRoomData(ActionEvent event) {
+        //Clear previous content
+        roomList = FXCollections.observableArrayList();
+        tableView.getItems().clear();
+        
         DBHandler dbHandler = DBHandler.getInstance();
         String sql = "SELECT * FROM ROOM";
         ResultSet rs = dbHandler.executeQuery(sql);
