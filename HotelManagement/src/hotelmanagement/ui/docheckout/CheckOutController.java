@@ -53,7 +53,7 @@ public class CheckOutController implements Initializable {
         //Print bill
         printBill();
         //Set room status to 'Available'
-        setRoomStatus(true);
+        setRoomStatus(rID,true);
     }
     
     private LocalDateTime getTime(){
@@ -141,8 +141,20 @@ public class CheckOutController implements Initializable {
         
     }
 
-    private void setRoomStatus(boolean available) {
+    private void setRoomStatus(int rID, boolean isAvailable) {
+        String roomStatusUpdateSQL = "UPDATE ROOM SET isAvailable=1 WHERE id="+rID;
         
+        if(dbHandler.execute(roomStatusUpdateSQL)){
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Update room status successfully");
+            alert.showAndWait();
+        }else{
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to update room status");
+            alert.showAndWait();
+        }
     }
 
     

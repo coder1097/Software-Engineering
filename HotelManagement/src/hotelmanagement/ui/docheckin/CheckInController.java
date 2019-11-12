@@ -50,7 +50,7 @@ public class CheckInController implements Initializable {
         String checkInDT = getTime().toString();
         
         String BillTableInsertionSQL = "INSERT INTO BILL(customerID, roomID,roomType,checkIn) VALUES('"+custID+"',"+rID+",'"+roomType+"','"+checkInDT+"')";
-        String roomUpdateStatusSQL = "UPDATE ROOM SET isAvailable = 0 WHERE id="+rID+"";
+        String roomUpdateStatusSQL = "UPDATE ROOM SET isAvailable = 0 WHERE id="+rID;
         
         if(dbHandler.execute(BillTableInsertionSQL) && dbHandler.execute(roomUpdateStatusSQL)){
             alert = new Alert(Alert.AlertType.INFORMATION);
