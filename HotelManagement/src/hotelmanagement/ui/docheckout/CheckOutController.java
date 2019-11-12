@@ -4,6 +4,7 @@ package hotelmanagement.ui.docheckout;
 import com.jfoenix.controls.JFXTextField;
 import hotelmanagement.DB.DBHandler;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -16,6 +17,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class CheckOutController implements Initializable {
 
@@ -48,12 +58,13 @@ public class CheckOutController implements Initializable {
         boolean isVIPRoom = rID%10 == 1 ? true:false;
         int fee = computeFee(days,hours,mins, isVIPRoom);
         //Update checkOut and fee
-        String checkOut = checkOutDT.toString();
+        String checkOut = checkOutDT.format(formatter);
         updateFeeAndCheckOutCol(rID,checkOut,fee);
-        //Print bill
-        printBill();
         //Set room status to 'Available'
         setRoomStatus(rID,true);
+        //Print bill
+        printBill();
+        
     }
     
     private LocalDateTime getTime(){
@@ -64,7 +75,7 @@ public class CheckOutController implements Initializable {
     }
 
     private String getCheckIn(int roomID) {
-        String sql = "SELECT checkIn FROM BILL WHERE roomID = "+roomID+" AND checkOut = null";
+        String sql = "SELECT BILL.checkIn FROM BILL WHERE roomID="+roomID+" AND checkOut IS NULL";
         ResultSet rs = dbHandler.executeQuery(sql);
         String checkIn = null;
         try {
@@ -88,9 +99,9 @@ public class CheckOutController implements Initializable {
         int fee_by_hours = computeFeeByHours(hours,mins,isVIPRoom);
         //Compute total fee
         if(isVIPRoom)
-            fee = fee_by_hours + days*450;
+            fee = fee_by_hours + days*450000;
         else
-            fee = fee_by_hours + days*350;
+            fee = fee_by_hours + days*350000;
         
         return fee;
     }
@@ -99,21 +110,25 @@ public class CheckOutController implements Initializable {
         int fee=0;
         
         if(hours==0 || (hours==1 && mins <= 15)){
-            fee=60;
+            fee=60000;
         }else if(hours==1 || (hours==2 && mins <= 15)){
-            fee=120;
+            fee=120000;
         }else if(hours < 6 || (hours==6 && mins <= 15)){
             if(mins > 15)
-                fee = 120 + (hours-1)*20;
+                fee = 120000 + (hours-1)*20000;
             else
-                fee = 120 + (hours-2)*20;
+                fee = 120000 + (hours-2)*20000;
         }else{
             if(hours < 12 || (hours==12 && mins <= 15)){
-                if(isVIPRoom) fee=350;
-                else fee=250;
+                if(isVIPRoom) 
+                    fee=350000;
+                else 
+                    fee=250000;
             }else{
-                if(isVIPRoom) fee=450;
-                else fee=350;
+                if(isVIPRoom) 
+                    fee=450000;
+                else 
+                    fee=350000;
             }
         }
         
@@ -121,8 +136,8 @@ public class CheckOutController implements Initializable {
     }
 
     private void updateFeeAndCheckOutCol(int rID, String checkOut, int fee) {
-        String feeUpdateSQL = "UPDATE BILL SET fee="+fee+" WHERE roomID="+rID+" AND checkOut=null";
-        String checkOutUpdateSQL = "UPDATE BILL SET checkOut='"+checkOut+"' WHERE roomID="+rID+" AND checkOut=null";
+        String feeUpdateSQL = "UPDATE BILL SET fee="+fee+" WHERE roomID="+rID+" AND checkOut IS NULL";
+        String checkOutUpdateSQL = "UPDATE BILL SET checkOut='"+checkOut+"' WHERE roomID="+rID+" AND checkOut IS NULL";
         
         if(dbHandler.execute(feeUpdateSQL) && dbHandler.execute(checkOutUpdateSQL)){
             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -138,6 +153,20 @@ public class CheckOutController implements Initializable {
     }
 
     private void printBill() {
+        try {
+            Connection conn = dbHandler.getConnection();
+            
+            JasperDesign billDesign = JRXmlLoader.load("D:\\SE\\HotelManagement\\src\\hotelmanagement\\ui\\docheckout\\bill.jrxml");
+            String sql = "SELECT * FROM BILL";
+            JRDesignQuery updateSQL = new JRDesignQuery();
+            updateSQL.setText(sql);
+            billDesign.setQuery(updateSQL);
+            JasperReport bill = JasperCompileManager.compileReport(billDesign);
+            JasperPrint bill_print = JasperFillManager.fillReport(bill,null,conn);
+            JasperViewer.viewReport(bill_print);
+        } catch (JRException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

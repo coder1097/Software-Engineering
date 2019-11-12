@@ -47,9 +47,9 @@ public class CheckInController implements Initializable {
         String custID = customerID.getText();
         int rID = Integer.parseInt(roomID.getText());
         String roomType = getRoomType(rID);
-        String checkInDT = getTime().toString();
+        String checkIn = getTime();
         
-        String BillTableInsertionSQL = "INSERT INTO BILL(customerID, roomID,roomType,checkIn) VALUES('"+custID+"',"+rID+",'"+roomType+"','"+checkInDT+"')";
+        String BillTableInsertionSQL = "INSERT INTO BILL(customerID, roomID,roomType,checkIn) VALUES('"+custID+"',"+rID+",'"+roomType+"','"+checkIn+"')";
         String roomUpdateStatusSQL = "UPDATE ROOM SET isAvailable = 0 WHERE id="+rID;
         
         if(dbHandler.execute(BillTableInsertionSQL) && dbHandler.execute(roomUpdateStatusSQL)){
@@ -70,11 +70,10 @@ public class CheckInController implements Initializable {
         else return "NORMAL";
     }
     
-    private LocalDateTime getTime(){
+    private String getTime(){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String checkIn = now.format(formatter);
-        return LocalDateTime.parse(checkIn,formatter);
+        return now.format(formatter);
     }
 
     @FXML

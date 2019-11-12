@@ -41,6 +41,10 @@ public final class DBHandler {
         }
     }
     
+    public Connection getConnection(){
+        return conn;
+    }
+    
     private void createCustomerTable(){
         String sql = "CREATE TABLE CUSTOMER(\n"+
                      "name nvarchar(256) NOT NULL,\n"+

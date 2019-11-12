@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e48d870-71df-4531-9e33-868f8858b161">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM BILL]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="customerID" class="java.lang.String"/>
+	<field name="roomID" class="java.lang.Integer"/>
+	<field name="roomType" class="java.lang.String"/>
+	<field name="checkIn" class="java.lang.String"/>
+	<field name="checkOut" class="java.lang.String"/>
+	<field name="fee" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="287" height="26" uuid="31696c4f-e16d-459e-baed-76f6195ed70d"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NHÀ NGHỈ TRUNG NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="469" height="24" uuid="9081a62a-b588-4453-96dc-e2e9b732b9c7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[61 Dương Bá Trạc P.02 Q.08 TP.HCM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="71" width="215" height="23" uuid="791f8acd-26fa-4b83-810c-3aee9c39d976"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Hotline: 0309969456]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="85" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="572" height="1" uuid="7b2ae351-aaf9-4ec1-ab67-804e4e7fdb11"/>
+			</line>
+			<staticText>
+				<reportElement x="93" y="22" width="376" height="35" uuid="cbad5c27-247c-41f9-8fd6-0512037c5af6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN THANH TOÁN]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="215" y="65" width="139" height="20" uuid="6f32e073-6a51-4958-9162-446fe152b121"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="212" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="9" width="210" height="20" uuid="f24fa79a-65bc-4f59-9a5a-31d9f0cc40ad"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Hóa đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="65" width="210" height="20" uuid="00fe63c4-58ac-44f3-9d41-7a9d941effd0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Mã phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="35" width="210" height="20" uuid="49d6d98e-276d-4fd6-aea6-001fc5c5b896"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Mã khách hàng:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="95" width="210" height="20" uuid="525df1e7-d7b3-4fc2-80b9-e9f66e827063"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Loại phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="156" width="270" height="20" uuid="4c5eece8-7801-4a9a-b9d2-1dcba609aeab"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Giờ ra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="125" width="270" height="20" uuid="657bc945-5b32-4fe1-80d7-cef1e2a9605f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Giờ vào]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="9" width="100" height="20" uuid="c7ecb394-5204-4a3f-afa6-1fcbadf4a1a9"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="35" width="100" height="20" uuid="2598af3c-daf8-44f5-9198-6531dfa53b1a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="65" width="100" height="20" uuid="a3fd46b8-13d3-450e-ad6f-8b3c0e87ff02"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{roomID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="95" width="100" height="20" uuid="d916008c-37f6-4578-8184-7222dac8d0c6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{roomType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="125" width="160" height="20" uuid="21024787-6229-4e52-bd9f-8917fe1cc350"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{checkIn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="156" width="160" height="20" uuid="53039bfa-9ddb-46f6-84ac-5ce8cc1c3365"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{checkOut}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="175" width="572" height="1" uuid="07f2a7d6-3417-49cd-82a6-c0537810ba20"/>
+			</line>
+			<staticText>
+				<reportElement x="28" y="192" width="110" height="20" uuid="0d367ee6-be9a-43c2-8d9d-984119fa16d3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THANH TOÁN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="192" width="100" height="20" uuid="e66068a0-e87e-4ea0-89a7-b8bc0f4bdd85"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="12" width="434" height="32" uuid="be8736e1-b259-406a-81d0-4f5adcfac33f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Hân Hạnh Phục Vụ Qúy Khách!]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
