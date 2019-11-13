@@ -1,4 +1,3 @@
-
 package hotelmanagement.ui.docheckin;
 
 import javafx.application.Application;
