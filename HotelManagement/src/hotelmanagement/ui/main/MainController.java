@@ -115,6 +115,11 @@ public class MainController implements Initializable {
         load("/hotelmanagement/ui/viewbookinghistory/booking_history.fxml","Booking History");
     }
     
+    @FXML
+    private void showStatistics(ActionEvent event) {
+        load("/hotelmanagement/ui/viewstatistics/view_statistics.fxml","Statistics");
+    }
+    
     private void load(String loc, String title){
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(loc));
@@ -146,6 +151,8 @@ public class MainController implements Initializable {
             }
         }
     }
+
+    
 
     
     

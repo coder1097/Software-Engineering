@@ -1,5 +1,6 @@
 package hotelmanagement.ui.viewcustomers;
 
+import com.jfoenix.controls.JFXTextField;
 import hotelmanagement.DB.DBHandler;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -38,10 +39,13 @@ public class CustomerListController implements Initializable {
     private TableColumn<Customer, String> mobileCol;
     @FXML
     private TableColumn<Customer, String> emailCol;
+    @FXML
+    private JFXTextField custSearch;
     
     private ObservableList<Customer> customerList;
     private DBHandler dbHandler;
     private Alert alert;
+    
     /**
      * Initializes the controller class.
      */
@@ -103,6 +107,36 @@ public class CustomerListController implements Initializable {
                 alert.showAndWait();
             }
         }
+    }
+
+    @FXML
+    private void searchCustomer(ActionEvent event) {
+        //Clear previous content
+        customerList = FXCollections.observableArrayList();
+        tableView.getItems().clear();
+        
+        String customerID = custSearch.getText();
+        String sql = "SELECT * FROM CUSTOMER WHERE id='"+customerID+"'";
+        ResultSet rs = dbHandler.executeQuery(sql);
+        
+        try {
+            while(rs.next()){
+                String name = rs.getString("name");
+                String id = rs.getString("id");               
+                String hometown = rs.getString("hometown");
+                int yearOfBirth = rs.getInt("yearOfBirth");
+                String mobile = rs.getString("mobile");
+                String email = rs.getString("email");
+                             
+                customerList.add(new Customer(name,id,hometown,yearOfBirth,mobile,email));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        tableView.setItems(customerList);
+
     }
     
 }

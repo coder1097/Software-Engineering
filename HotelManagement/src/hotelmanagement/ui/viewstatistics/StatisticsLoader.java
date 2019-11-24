@@ -1,5 +1,5 @@
 
-package hotelmanagement.ui.viewbookinghistory;
+package hotelmanagement.ui.viewstatistics;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +11,10 @@ import javafx.stage.Stage;
  *
  * @author Laptop
  */
-public class BookingHistoryLoader extends Application{
+public class StatisticsLoader extends Application{
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("booking_history.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view_statistics.fxml"));
         
         Scene scene = new Scene(root);
         

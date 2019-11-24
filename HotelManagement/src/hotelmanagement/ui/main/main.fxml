@@ -62,6 +62,15 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="582.0" mnemonicParsing="false" onAction="#showStatistics" prefHeight="150.0" prefWidth="225.0" text="View Statistics">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/statistics.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
          </right>
