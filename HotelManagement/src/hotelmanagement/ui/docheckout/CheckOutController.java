@@ -45,7 +45,7 @@ public class CheckOutController implements Initializable {
         int rID = Integer.parseInt(roomID.getText());
         
         String checkIn = getCheckIn(rID);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime checkInDT = LocalDateTime.parse(checkIn,formatter);
         //checkOut
         LocalDateTime checkOutDT = getTime();
@@ -69,13 +69,13 @@ public class CheckOutController implements Initializable {
     
     private LocalDateTime getTime(){
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String checkIn = now.format(formatter);
         return LocalDateTime.parse(checkIn,formatter);
     }
 
     private String getCheckIn(int roomID) {
-        String sql = "SELECT BILL.checkIn FROM BILL WHERE roomID="+roomID+" AND checkOut IS NULL";
+        String sql = "SELECT CONVERT(varchar(20),checkIn,20) AS checkIn FROM BILL WHERE roomID="+roomID+" AND checkOut IS NULL";
         ResultSet rs = dbHandler.executeQuery(sql);
         String checkIn = null;
         try {
@@ -92,7 +92,7 @@ public class CheckOutController implements Initializable {
         }
         return checkIn;
     }
-
+    //Room Fee Algorithm
     private int computeFee(int days, int hours, int mins, boolean isVIPRoom) {
         int fee=0;
         
@@ -137,7 +137,7 @@ public class CheckOutController implements Initializable {
 
     private void updateFeeAndCheckOutCol(int rID, String checkOut, int fee) {
         String feeUpdateSQL = "UPDATE BILL SET fee="+fee+" WHERE roomID="+rID+" AND checkOut IS NULL";
-        String checkOutUpdateSQL = "UPDATE BILL SET checkOut='"+checkOut+"' WHERE roomID="+rID+" AND checkOut IS NULL";
+        String checkOutUpdateSQL = "UPDATE BILL SET checkOut=CAST('"+checkOut+"' AS DATETIME) WHERE roomID="+rID+" AND checkOut IS NULL";
         
         if(dbHandler.execute(feeUpdateSQL) && dbHandler.execute(checkOutUpdateSQL)){
             alert = new Alert(Alert.AlertType.INFORMATION);

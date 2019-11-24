@@ -130,8 +130,8 @@ public final class DBHandler {
                      "customerID varchar(20),\n"+
                      "roomID int,\n"+
                      "roomType varchar(10) DEFAULT('NORMAL') CHECK(roomType IN('NORMAL','VIP')),\n"+
-                     "checkIn varchar(25),\n"+
-                     "checkOut varchar(25) default(null),\n"+
+                     "checkIn datetime,\n"+
+                     "checkOut datetime default(null),\n"+
                      "fee int default(0),\n"+
                      "CONSTRAINT FK_BILL_CUSTOMERID_CUSTOMER FOREIGN KEY(customerID) REFERENCES CUSTOMER(id),\n"+
                      "CONSTRAINT FK_BILL_ROOMID_ROOM FOREIGN KEY(roomID) REFERENCES ROOM(id),\n"+

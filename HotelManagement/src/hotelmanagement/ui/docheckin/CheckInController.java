@@ -49,10 +49,11 @@ public class CheckInController implements Initializable {
         String roomType = getRoomType(rID);
         String checkIn = getTime();
         
-        String BillTableInsertionSQL = "INSERT INTO BILL(customerID, roomID,roomType,checkIn) VALUES('"+custID+"',"+rID+",'"+roomType+"','"+checkIn+"')";
+        String billTableInsertionSQL = "INSERT INTO BILL(customerID, roomID,roomType,checkIn) VALUES('"+custID+"',"+rID+",'"+roomType+"',"
+                + "CAST('"+checkIn+"'AS DATETIME))";
         String roomUpdateStatusSQL = "UPDATE ROOM SET isAvailable = 0 WHERE id="+rID;
         
-        if(dbHandler.execute(BillTableInsertionSQL) && dbHandler.execute(roomUpdateStatusSQL)){
+        if(dbHandler.execute(billTableInsertionSQL) && dbHandler.execute(roomUpdateStatusSQL)){
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("SUCCESS");
@@ -72,7 +73,7 @@ public class CheckInController implements Initializable {
     
     private String getTime(){
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
 
