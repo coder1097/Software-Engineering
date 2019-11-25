@@ -133,24 +133,9 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void deleteRoom(ActionEvent event) {
-        Room roomToDelete = tableView.getSelectionModel().getSelectedItem();
-        if(roomToDelete != null){
-            Boolean status = dbHandler.executeRoomDeletion(roomToDelete);
-            if(status){
-                roomList.remove(roomToDelete);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("DONE");
-                alert.showAndWait();
-            }else{
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Failed to delete");
-                alert.showAndWait();
-            }
-        }
+    private void editRoomInfo(ActionEvent event) {
     }
+
 
     
 

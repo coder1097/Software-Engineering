@@ -177,34 +177,7 @@ public final class DBHandler {
         }
         return rs;
     }
-    
-    public boolean executeRoomDeletion(Room r){
-        String roomDeletionSQL = "DELETE FROM ROOM WHERE id=?";
-        try {
-            pst = conn.prepareStatement(roomDeletionSQL);
-            pst.setInt(1,r.getId());
-            int res = pst.executeUpdate();
-            
-            if(res == 1) return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-    
-    public boolean executeCustomerDeletion(Customer c){
-        String customerDeletionSQL = "DELETE FROM CUSTOMER WHERE id=?";
-        try {
-            pst = conn.prepareStatement(customerDeletionSQL);
-            pst.setString(1,c.getId());
-            int res = pst.executeUpdate();
-            
-            if(res == 1) return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
+   
     
     public boolean executeBillDeletion(Bill b){
         String billDeletionSQL = "DELETE FROM BILL WHERE id=?";
@@ -214,6 +187,25 @@ public final class DBHandler {
             int res = pst.executeUpdate();
             
             if(res == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean updateCustomerInfo(Customer c){
+        String customerUpdateSQL = "UPDATE CUSTOMER SET name=?,hometown=?,yearOfBirth=?,mobile=?,email=? WHERE ID=?";
+        try {
+            pst = conn.prepareStatement(customerUpdateSQL);
+            pst.setString(1,c.getName());
+            pst.setString(2,c.getHometown());
+            pst.setInt(3,c.getYearOfBirth());
+            pst.setString(4,c.getMobile());
+            pst.setString(5,c.getEmail());
+            pst.setString(6,c.getId());
+            
+            int res = pst.executeUpdate();
+            return res>0;
         } catch (SQLException ex) {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

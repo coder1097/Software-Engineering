@@ -1,8 +1,8 @@
 package hotelmanagement.ui.addcustomer;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import hotelmanagement.DB.DBHandler;
+import hotelmanagement.ui.viewcustomers.Customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,6 +35,7 @@ public class CustomerAddController implements Initializable {
     
     private DBHandler dbHandler;
     private Alert alert;
+    private boolean isInEditMode = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,6 +59,23 @@ public class CustomerAddController implements Initializable {
             return;
         }
         
+        if(isInEditMode){
+            Customer c = new Customer(name,id,hometown,yearOfBirth,mobile,email);
+            if(dbHandler.updateCustomerInfo(c)){
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Update customer info successfully");
+                alert.showAndWait();
+            }else{
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to update customer info");
+                alert.showAndWait();
+            }
+            
+            return;
+        }
+        
         String sql = "INSERT INTO CUSTOMER VALUES(N'"+name+"','"+id+"',N'"+hometown+"',"+yearOfBirth+",'"+mobile+"','"+email+"')";
         
         if(dbHandler.execute(sql)){
@@ -77,6 +95,19 @@ public class CustomerAddController implements Initializable {
     private void cancel(ActionEvent event) {
         Stage stage = (Stage)rootPane.getScene().getWindow();
         stage.close();
+    }
+    
+    public void inflateUI(Customer c){
+        custName.setText(c.getName());
+        custID.setText(c.getId());
+        custHometown.setText(c.getHometown());
+        custYOB.setText(String.valueOf(c.getYearOfBirth()));
+        custMobile.setText(c.getMobile());
+        custEmail.setText(c.getEmail());
+        
+        //Disable ID field
+        custID.setEditable(false);
+        isInEditMode = true;
     }
     
 }

@@ -92,7 +92,7 @@
                            <contextMenu>
                               <ContextMenu>
                                 <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#deleteRoom" text="Delete" />
+                                  <MenuItem mnemonicParsing="false" onAction="#editRoomInfo" text="Edit" />
                                 </items>
                               </ContextMenu>
                            </contextMenu>
