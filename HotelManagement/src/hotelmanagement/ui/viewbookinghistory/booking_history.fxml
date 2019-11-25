@@ -7,20 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="773.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagement.ui.viewbookinghistory.BookingHistoryController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="879.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagement.ui.viewbookinghistory.BookingHistoryController">
     <stylesheets>
         <URL value="@booking_history.css" />
     </stylesheets>
    <children>
       <TableView fx:id="tableView" prefHeight="596.0" prefWidth="773.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="Customer ID" />
-            <TableColumn fx:id="roomIdCol" prefWidth="75.0" text="Room ID" />
-            <TableColumn fx:id="roomTypeCol" prefWidth="75.0" text="Room Type" />
-            <TableColumn fx:id="checkInCol" prefWidth="75.0" text="Check In" />
-            <TableColumn fx:id="checkOutCol" prefWidth="75.0" text="Check Out" />
-            <TableColumn fx:id="feeCol" prefWidth="75.0" text="Fee" />
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="Mã Hóa Đơn" />
+          <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="CMND" />
+            <TableColumn fx:id="roomIdCol" prefWidth="75.0" text="MÃ PHÒNG" />
+            <TableColumn fx:id="roomTypeCol" prefWidth="75.0" text="LOẠI PHÒNG" />
+            <TableColumn fx:id="checkInCol" prefWidth="75.0" text="GIỜ CHECK-IN" />
+            <TableColumn fx:id="checkOutCol" prefWidth="75.0" text="GIỜ CHECK-OUT" />
+            <TableColumn fx:id="feeCol" prefWidth="75.0" text="TỔNG TIỀN" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
