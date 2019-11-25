@@ -30,8 +30,6 @@ public class Main extends Application {
         stage.setHeight(bound.getHeight());
         stage.setMaximized(true);
         
-        System.out.println(bound.getMaxX());
-        System.out.println(bound.getMaxY());
         stage.show();
     }
 
