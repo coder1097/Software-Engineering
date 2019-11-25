@@ -131,14 +131,5 @@ public class MainController implements Initializable {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void editRoomInfo(ActionEvent event) {
-    }
-
-
-    
-
-    
-    
+  
 }

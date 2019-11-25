@@ -43,7 +43,7 @@ public class CheckInController implements Initializable {
     }    
 
     @FXML
-    private void reserveRoom(ActionEvent event) {
+    private void bookRoom(ActionEvent event) {
         String custID = customerID.getText();
         int rID = Integer.parseInt(roomID.getText());
         String roomType = getRoomType(rID);
@@ -78,7 +78,7 @@ public class CheckInController implements Initializable {
     }
 
     @FXML
-    private void cancelReservation(ActionEvent event) {
+    private void cancelBooking(ActionEvent event) {
         Stage stage = (Stage)rootPane.getScene().getWindow();
         stage.close();
     }

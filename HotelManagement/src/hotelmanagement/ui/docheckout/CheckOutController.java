@@ -157,13 +157,13 @@ public class CheckOutController implements Initializable {
             Connection conn = dbHandler.getConnection();
             
             JasperDesign billDesign = JRXmlLoader.load("D:\\SE\\HotelManagement\\src\\hotelmanagement\\ui\\docheckout\\bill.jrxml");
-            String sql = "SELECT * FROM BILL";
+            String billPrintSQL = "SELECT TOP 1 * FROM BILL ORDER BY checkOut DESC";
             JRDesignQuery updateSQL = new JRDesignQuery();
-            updateSQL.setText(sql);
+            updateSQL.setText(billPrintSQL);
             billDesign.setQuery(updateSQL);
             JasperReport bill = JasperCompileManager.compileReport(billDesign);
             JasperPrint bill_print = JasperFillManager.fillReport(bill,null,conn);
-            JasperViewer.viewReport(bill_print);
+            JasperViewer.viewReport(bill_print,false);
         } catch (JRException ex) {
             Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
         }

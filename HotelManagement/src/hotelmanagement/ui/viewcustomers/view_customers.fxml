@@ -17,11 +17,11 @@
          <center>
             <TableView fx:id="tableView" prefHeight="552.0" prefWidth="869.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="hometownCol" prefWidth="75.0" text="Hometown" />
-                  <TableColumn fx:id="yobCol" prefWidth="75.0" text="YOB" />
-                  <TableColumn fx:id="mobileCol" prefWidth="75.0" text="Mobile Number" />
+                <TableColumn fx:id="nameCol" prefWidth="75.0" text="TÊN KHÁCH HÀNG" />
+                <TableColumn fx:id="idCol" prefWidth="75.0" text="CMND" />
+                  <TableColumn fx:id="hometownCol" prefWidth="75.0" text="QUÊ QUÁN" />
+                  <TableColumn fx:id="yobCol" prefWidth="75.0" text="NGÀY SINH" />
+                  <TableColumn fx:id="mobileCol" prefWidth="75.0" text="SĐT" />
                   <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
               </columns>
                <columnResizePolicy>
@@ -40,7 +40,7 @@
             <HBox alignment="CENTER" prefHeight="38.0" prefWidth="869.0" BorderPane.alignment="CENTER">
                <children>
                   <JFXTextField fx:id="custSearch" prefHeight="31.0" prefWidth="201.0" />
-                  <JFXButton onAction="#searchCustomer" text="Search" />
+                  <JFXButton onAction="#searchCustomer" stylesheets="@view_customers.css" text="TÌM KIẾM " />
                </children>
             </HBox>
          </bottom>

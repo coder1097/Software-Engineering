@@ -13,20 +13,20 @@
    <children>
       <VBox alignment="CENTER" prefHeight="469.0" prefWidth="678.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField fx:id="customerID" promptText="Customer ID">
+            <JFXTextField fx:id="customerID" promptText="Nhập CMND">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField fx:id="roomID" layoutX="10.0" layoutY="10.0" promptText="Room ID">
+            <JFXTextField fx:id="roomID" layoutX="10.0" layoutY="10.0" promptText="Nhập mã phòng">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </JFXTextField>
             <HBox prefHeight="67.0" prefWidth="678.0">
                <children>
-                  <JFXButton onAction="#reserveRoom" prefHeight="100.0" prefWidth="400.0" stylesheets="@check_in.css" text="Book" />
-                  <JFXButton layoutX="10.0" layoutY="10.0" onAction="#cancelReservation" prefHeight="100.0" prefWidth="400.0" stylesheets="@check_in.css" text="Cancel" />
+                  <JFXButton onAction="#bookRoom" prefHeight="100.0" prefWidth="400.0" stylesheets="@check_in.css" text="ĐẶT PHÒNG" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" onAction="#cancelBooking" prefHeight="100.0" prefWidth="400.0" stylesheets="@check_in.css" text="HỦY " />
                </children>
             </HBox>
          </children>

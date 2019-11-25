@@ -29,7 +29,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton onAction="#loadStatistics" text="XEM THỐNG KÊ" />
+                  <JFXButton onAction="#loadStatistics" stylesheets="@view_statistics.css" text="XEM THỐNG KÊ" />
                </children>
             </HBox>
          </bottom>

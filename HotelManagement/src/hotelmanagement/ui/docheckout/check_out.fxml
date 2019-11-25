@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="656.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="hotelmanagement.ui.docheckout.CheckOutController">
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="656.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagement.ui.docheckout.CheckOutController">
     <stylesheets>
         <URL value="@check_out.css" />
     </stylesheets>
@@ -17,12 +17,12 @@
          <children>
             <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
                <children>
-                  <JFXTextField fx:id="roomID" promptText="Enter Room ID" />
+                  <JFXTextField fx:id="roomID" promptText="Nhập Mã Phòng" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
                <children>
-                  <JFXButton onAction="#returnRoom" text="Submit" />
+                  <JFXButton onAction="#returnRoom" text="TRẢ PHÒNG" />
                </children>
             </HBox>
          </children>
