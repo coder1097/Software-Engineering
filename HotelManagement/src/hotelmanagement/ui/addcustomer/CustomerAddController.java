@@ -54,7 +54,7 @@ public class CustomerAddController implements Initializable {
         if(name.isEmpty() || id.isEmpty()){
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setContentText("Please insert name and id");
+            alert.setContentText("Vui lòng nhập đầy đủ thông tin");
             alert.showAndWait();
             return;
         }
